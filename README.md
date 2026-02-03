@@ -1,1 +1,1 @@
-# Artifact-Repository-Manager-with-Nexus-Projects
+# Artifact Repository Manager with Nexus Projects
