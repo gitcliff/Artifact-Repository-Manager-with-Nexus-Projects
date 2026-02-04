@@ -1,0 +1,66 @@
+# 📦 SUMMARY  
+# This set of commands navigates to the /opt directory, downloads a compressed archive of Nexus Repository Manager, lists files in the directory, and extracts the downloaded archive.  
+# Language/Platform: Bash/Linux shell commands  
+# What you'll learn: How to change directories, download files from the internet, list directory contents, and extract tar.gz archives  
+# Outcome: The Nexus Repository Manager archive is downloaded and extracted into the /opt directory  
+# Why this matters: Setting up Nexus repository allows managing and hosting software artifacts, essential in development pipelines  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Change directory to /opt  
+# ------------------------------  
+cd /opt/  
+# ✅ What it does: Changes the current directory to /opt, a common location for optional software installations  
+# 🧠 Why it matters: Ensures you download and extract files in the right system directory for software  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Download Nexus Repository archive  
+# ------------------------------  
+wget https://download.sonatype.com/nexus/3/nexus-unix-x86-64-3.79.0-09.tar.gz  
+# ✅ What it does: Downloads the Nexus Repository Manager tarball from Sonatype's official URL to the current directory  
+# 🧠 Why it matters: Gets the installation package needed to set up Nexus locally  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: List contents of current directory  
+# ------------------------------  
+ls  
+# ✅ What it does: Lists all files and folders in the current directory (/opt)  
+# 🧠 Why it matters: Verifies that the downloaded file is present before extracting  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Extract the Nexus archive  
+# ------------------------------  
+tar -zxvf nexus-unix-x86-64-3.79.0-09.tar.gz  
+# ✅ What it does: Extracts the .tar.gz archive into the current directory, creating the Nexus folder structure  
+# 🧠 Why it matters: Unpacks the software so it can be installed or run from the extracted files  
+
+# ------------------------------  
+# ▶️ HOW TO RUN / EXECUTE THESE COMMANDS  
+# ------------------------------  
+# Bash/Linux shell:  
+cd /opt/                             # ✅ Change directory to /opt where software will be installed  
+                                    # 🧠 Necessary to keep system organized with standard locations for optional software  
+wget https://download.sonatype.com/nexus/3/nexus-unix-x86-64-3.79.0-09.tar.gz  
+                                    # ✅ Download Nexus installation package  
+                                    # 🧠 Fetches the software needed for repository management  
+ls                                  # ✅ Lists files to confirm the download succeeded  
+                                    # 🧠 Helps verify the environment before extraction  
+tar -zxwf nexus-unix-x86-64-3.79.0-09.tar.gz  
+                                    # ✅ Extracts the archive contents into /opt  
+                                    # 🧠 Makes the software ready for configuration or execution  
+
+# PowerShell (Windows with WSL):  
+# Use the same bash commands in a WSL terminal as above.  
+# Alternatively, in native PowerShell without WSL, use:  
+Invoke-WebRequest -Uri "https://download.sonatype.com/nexus/3/nexus-unix-x86-64-3.79.0-09.tar.gz" -OutFile "C:\path\to\save\nexus-unix-x86-64-3.79.0-09.tar.gz"  
+# ✅ Downloads the file via PowerShell  
+# Extracting tar.gz can be done with 7-Zip or tar (if available):  
+tar -zxvf "C:\path\to\save\nexus-unix-x86-64-3.79.0-09.tar.gz" -C "C:\desired\extract\folder"  
+
+# ------------------------------  
+# ✅ NOTES / GOTCHAS / TIPS  
+# ------------------------------  
+# - Make sure you have permissions to write in /opt (may need `sudo` before commands).  
+# - `wget` requires network access and that the URL is reachable.  
+# - The `tar` flags: `-z` decompresses gzip, `-x` extracts, `-w` writes files, `-f` specifies the archive file.  
+# - On Windows without WSL, `wget` is not native, so use `Invoke-WebRequest` or tools like curl.  
+# - Confirm the file downloaded correctly by comparing file size or checksums if available.  

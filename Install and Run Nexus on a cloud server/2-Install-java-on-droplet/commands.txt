@@ -1,0 +1,45 @@
+# 📦 SUMMARY  
+# This sequence installs the OpenJDK 17 Java Runtime Environment (headless version) on a Linux system, then checks the installed Java version.  
+# Language/Platform: Bash/Linux shell commands  
+# What you'll learn: How to install Java using apt package manager, verify Java installation and version  
+# Outcome: Java Runtime Environment (JRE) 17 is installed without graphical components, and version info is displayed  
+# Why this matters: Many applications require Java to run, and installing a headless version is efficient for servers without GUI  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Install Java Runtime Environment (JRE)  
+# ------------------------------  
+apt install openjdk-17-jre-headless  
+# ✅ What it does: Installs OpenJDK 17 JRE without GUI-related libraries on your system using the apt package manager  
+# 🧠 Why it matters: Provides a lightweight Java runtime environment suitable for server environments or CLI applications  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Verify Java Installation  
+# ------------------------------  
+java -version  
+# ✅ What it does: Displays the currently installed Java version and related details  
+# 🧠 Why it matters: Confirms Java was installed successfully and lets you verify the version for compatibility  
+
+# ------------------------------  
+# ▶️ HOW TO RUN / EXECUTE THESE COMMANDS  
+# ------------------------------  
+# Bash/Linux shell:  
+sudo apt update                    # ✅ What it does: Updates package lists so apt knows about latest versions  
+                                  # 🧠 Why it matters: Ensures you install the newest version of Java  
+sudo apt install openjdk-17-jre-headless  # ✅ What it does: Installs the OpenJDK 17 JRE headless package  
+                                          # 🧠 Why it matters: Needed to run Java applications on your system  
+java -version                    # ✅ What it does: Checks installed Java version to verify installation  
+                                  # 🧠 Why it matters: Ensures you have the correct Java version installed  
+
+# PowerShell (Windows, using Windows Subsystem for Linux or similar):  
+# Run the same bash commands in WSL terminal or use an appropriate package manager for Windows like Chocolatey:  
+# choco install openjdk17         # ✅ What it does: Installs OpenJDK 17 on Windows using Chocolatey  
+# java -version                  # ✅ Same verification step for Windows  
+
+# ------------------------------  
+# ✅ NOTES / GOTCHAS / TIPS  
+# ------------------------------  
+# - Use `sudo` before `apt install` to run the installation with administrator privileges.  
+# - "headless" means it does not install GUI-related libraries, ideal for servers without a graphical interface.  
+# - If `apt` commands fail, you might need to run `sudo apt update` first.  
+# - Verify your PATH includes Java binaries, or use full path to `java` if needed.  
+# - On non-Debian based systems, use the equivalent package manager (e.g., yum, dnf).  

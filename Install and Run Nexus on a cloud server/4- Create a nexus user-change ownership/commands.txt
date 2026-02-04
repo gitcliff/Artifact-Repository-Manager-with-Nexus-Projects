@@ -1,0 +1,53 @@
+# 📦 SUMMARY  
+# These commands change the ownership of the Nexus installation directory and its related data directory to the user and group "nexus".  
+# Language/Platform: Bash/Linux shell commands  
+# What you'll learn: How to change ownership of files and directories recursively to manage permissions properly  
+# Outcome: The Nexus software files and its data directory are owned by the "nexus" user and group, allowing Nexus to run with appropriate permissions  
+# Why this matters: Proper ownership ensures the Nexus service can read/write necessary files securely without using root privileges  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Create "nexus" user  
+# ------------------------------  
+adduser nexus                               # ✅ What it does: Creates a new user named "nexus" with a default group and home directory  
+                                           # 🧠 Why it matters: This user will own and run the Nexus service, reducing security risks of running as root  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Change ownership of Nexus directory  
+# ------------------------------  
+chown -R nexus:nexus nexus-3.79.0-09/       # ✅ What it does: Recursively (-R) changes ownership of all files and folders in "nexus-3.79.0-09" to user "nexus" and group "nexus"  
+                                           # 🧠 Why it matters: Ensures the Nexus app can access and modify its installation files when running as "nexus"  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Change ownership of Nexus data directory  
+# ------------------------------  
+chown -R nexus:nexus sonatype-work/         # ✅ What it does: Recursively changes ownership of "sonatype-work" directory (where Nexus stores data) to user and group "nexus"  
+                                           # 🧠 Why it matters: Prevents permission errors when Nexus tries to read/write repository data  
+
+# ------------------------------  
+# ▶️ HOW TO RUN / EXECUTE THESE COMMANDS  
+# ------------------------------  
+# Bash/Linux shell:  
+sudo adduser nexus                          # ✅ What it does: Creates the "nexus" user with sudo privileges (if not already present)  
+                                           # 🧠 Why it matters: Needed before assigning ownership so that "nexus" exists  
+
+sudo chown -R nexus:nexus nexus-3.79.0-09/  # ✅ What it does: Changes ownership of the Nexus installation directory recursively  
+                                           # 🧠 Why it matters: Allows Nexus to control its own files without root  
+
+sudo chown -R nexus:nexus sonatype-work/    # ✅ What it does: Changes ownership of the data directory recursively  
+                                           # 🧠 Why it matters: Gives Nexus full control of its working data  
+
+# PowerShell (Windows equivalent):  
+# Windows does not use chown; instead use icacls to set permissions:  
+icacls "C:\nexus-3.79.0-09" /grant "nexus:(OI)(CI)F" /T  # ✅ Grants full control (F) to "nexus" user recursively (/T)  
+                                                       # 🧠 Why it matters: Provides Nexus necessary rights to manage files on Windows  
+
+icacls "C:\sonatype-work" /grant "nexus:(OI)(CI)F" /T   # ✅ Same for the data directory  
+                                                       # 🧠 Why it matters: Ensures Nexus service can manage repository data properly  
+
+# ------------------------------  
+# ✅ NOTES / GOTCHAS / TIPS  
+# ------------------------------  
+# - The `-R` flag in chown is critical; without it, only the top directory changes ownership.  
+# - Be careful not to run chown recursively on system directories like `/` or `/etc`—it could break your OS.  
+# - On Windows, remember `icacls` modifies permissions but doesn’t truly “change owner” like chown.  
+# - Check your user was created: `id nexus` (Linux) or `net user nexus` (Windows).  
