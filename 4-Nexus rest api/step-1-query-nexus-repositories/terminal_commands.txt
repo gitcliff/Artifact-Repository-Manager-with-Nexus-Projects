@@ -1,0 +1,45 @@
+# 📦 SUMMARY  
+# These `curl` commands retrieve repository and artifact information from a Nexus repository manager via its REST API.  
+# Language/Platform: Bash (curl commands)  
+# What you'll learn: How to use curl with HTTP basic auth to query Nexus repositories and list artifacts  
+# Outcome: You get JSON output listing all repositories or artifacts within a specific repository  
+# Why this matters: Useful for automation, monitoring, or integration with CI/CD pipelines by accessing repository data programmatically  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Get List of All Repositories  
+# ------------------------------  
+curl -u user:password -X GET \
+"http://Dropletip:8081/service/rest/v1/repositories"  
+# ✅ What it does: Sends an authenticated GET request to Nexus API to list all repositories  
+# 🧠 Why it matters: Allows you to see what repositories are configured on your Nexus server  
+
+# Alternative (with admin account):  
+curl -u user:password -X GET \
+"http://Dropletip/service/rest/v1/repositories"  
+# ✅ What it does: Same as above but authenticates with the admin user  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: List Artifacts in a Specific Repository (maven-snapshots)  
+# ------------------------------  
+curl -u user:password -X GET \
+"http://Dropletip:8081/service/rest/v1/components?repository=maven-snapshots"  
+# ✅ What it does: Queries Nexus to list components/artifacts in the 'maven-snapshots' repository  
+# 🧠 Why it matters: Helps you inspect contents of a specific repository, useful for verifying uploads or auditing artifacts  
+
+# ------------------------------  
+# ▶️ HOW TO RUN / EXECUTE THESE COMMANDS  
+# ------------------------------  
+# Bash/Linux shell:  
+# Paste and run the curl commands as-is, replacing username/password with your credentials if needed.  
+
+# PowerShell (Windows):  
+# Use the same commands; ensure curl is installed or use Invoke-RestMethod for native PowerShell commands:  
+# Example:  
+# Invoke-RestMethod -Uri "http://164.92.127.132:8081/service/rest/v1/repositories" -Credential (Get-Credential) -Method Get  
+
+# ------------------------------  
+# ✅ NOTES / GOTCHAS / TIPS  
+# ------------------------------  
+# - Replace IP and credentials with your actual Nexus server address and user details.  
+# - Output is JSON, which can be parsed using tools like `jq` for easier reading.  
+# - Secure credentials by avoiding plaintext in scripts or use environment variables.  
