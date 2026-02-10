@@ -1,0 +1,46 @@
+# 📦 SUMMARY  
+# This command runs the Maven deploy lifecycle phase, compiling your project and uploading the built artifacts to the configured remote repository (e.g., Nexus).  
+# Language/Platform: Bash/Linux shell command for Maven  
+# What you'll learn: How to deploy Maven build artifacts to a remote repository using a single command  
+# Outcome: Your project’s JAR, WAR, or other build outputs are published to Nexus or your specified Maven repository  
+# Why this matters: Automates artifact distribution, enabling sharing and version control in development and production environments  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Package the Maven project  
+# ------------------------------  
+mvn package  
+# ✅ What it does: Compiles your source code, runs tests, and packages the application into a JAR/WAR file in the `target/` directory  
+# 🧠 Why it matters: Prepares the build artifact needed for deployment to a repository  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Execute Maven deploy  
+# ------------------------------  
+mvn deploy  
+# ✅ What it does:  
+# - Executes the full Maven build lifecycle: validate → compile → test → package → verify → install → deploy  
+# - Uploads the packaged artifact(s) to the remote Maven repository specified in your POM’s `<distributionManagement>` section  
+# - Uses credentials configured in your Maven `settings.xml` for authentication with the remote repository  
+# 🧠 Why it matters:  
+# - Automates distribution of build artifacts so they’re accessible to teams and CI/CD pipelines  
+# - Keeps versioned artifacts in a central location for reuse and deployment  
+
+# ------------------------------  
+# ▶️ HOW TO RUN / EXECUTE THIS COMMAND  
+# ------------------------------  
+# Bash/Linux shell:  
+mvn deploy  
+# ✅ What it does: Performs deployment of built artifacts to the configured Nexus repository  
+# 🧠 Why it matters: A single command completes the build and pushes to Nexus  
+
+# PowerShell (Windows):  
+mvn deploy  
+# ✅ Same command works in PowerShell if Maven is installed and in PATH  
+
+# ------------------------------  
+# ✅ NOTES / GOTCHAS / TIPS  
+# ------------------------------  
+# - Ensure your `pom.xml` contains a `<distributionManagement>` section with the correct repository URLs.  
+# - Check that your `~/.m2/settings.xml` includes `<server>` credentials matching the repository `<id>`.  
+# - The `deploy` phase uploads snapshot artifacts to the snapshot repository and release artifacts to the release repository based on version naming (e.g., `1.0.0-SNAPSHOT`).  
+# - If tests fail during the build, add `-DskipTests` to skip them: `mvn deploy -DskipTests`.  
+# - For multi-module projects, run from the parent directory to deploy all modules.  

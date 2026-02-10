@@ -1,0 +1,6 @@
+git checkout -b feature/5_Publish_Artifact_to_Repository
+git add .
+git commit -m "5 - Publish Artifact to Repository"
+git push -u origin main
+
+git checkout feature/5_Publish_Artifact_to_Repository

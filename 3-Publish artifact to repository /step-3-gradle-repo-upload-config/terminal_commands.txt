@@ -1,0 +1,68 @@
+# 📦 SUMMARY  
+# This Gradle snippet configures a Maven repository where artifacts will be published, including authentication and URL setup.  
+# Language/Platform: Groovy (Gradle build script)  
+# What you'll learn: How to configure Gradle to publish artifacts to a remote Maven repository like Nexus, with credentials  
+# Outcome: Gradle knows where and how to upload your build artifacts during the publish process  
+# Why this matters: Proper repository setup is essential for secure and successful artifact publishing in CI/CD pipelines  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Configure Maven repository for publishing  
+# ------------------------------  
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifact("build/libs/my-app-$version" + ".jar") {
+                extension = 'jar' // ✅ Proper Groovy syntax with =
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = 'nexus' // ✅ Use = in Groovy assignments
+            url = "http://xx.xx.xx.xx:xxxx/repository/maven-snapshots/"
+            allowInsecureProtocol = true // ✅ Allows HTTP (Gradle 6.8+)
+
+            credentials {
+                username = project.repoUser     // ✅ Uses property repoUser
+                password = project.repoPassword // ✅ Uses property repoPassword
+            }
+        }
+    }
+} 
+# 🧠 Why it matters:  
+# - Defines the target Nexus repository URL where Gradle will push artifacts.  
+# - Authentication ensures only authorized users can publish.  
+# - Allows Gradle to handle credentials securely through project properties instead of hardcoding them.  
+
+# ------------------------------  
+# ✅ NOTES / GOTCHAS / TIPS  
+# ------------------------------  
+# - Replace "http://xx.xx.xx.xx:xxxx" with your actual Nexus server IP/domain and port.  
+# - Use HTTPS and set `allowInsecureProtocol = false` in production for secure communication.  
+# - Define `repoUser` and `repoPassword` in your Gradle `gradle.properties` or pass them via command line for security.  
+# - Ensure Nexus repository URL matches the type of repository (e.g., snapshots, releases).  
+# 📦 SUMMARY  
+# This properties file snippet defines credentials used by Gradle to authenticate when publishing artifacts to a Maven repository like Nexus.  
+# Language/Platform: Properties file (gradle.properties)  
+# What you'll learn: How to securely provide username and password for repository authentication in Gradle builds  
+# Outcome: Gradle can use these credentials when uploading artifacts to Nexus during the publish task  
+# Why this matters: Separating credentials into properties files improves security and makes builds configurable without hardcoding sensitive data  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Define repository credentials in gradle.properties  
+# ------------------------------  
+repoUser=your_username  
+# ✅ What it does: Sets the username for authenticating to the Maven repository  
+# 🧠 Why it matters: This value is used by Gradle when publishing to authenticate your identity  
+
+repoPassword=your_password  
+# ✅ What it does: Sets the password for the Maven repository authentication  
+# 🧠 Why it matters: Together with the username, this allows secure access to the Nexus repository to upload artifacts  
+
+# ------------------------------  
+# ✅ NOTES / GOTCHAS / TIPS  
+# ------------------------------  
+# - Replace "your_username" and "your_password" with actual Nexus repository credentials.  
+# - Avoid committing this file to version control to protect sensitive information.  
+# - Use environment variables or encrypted secrets in CI/CD systems for enhanced security.  
+# - You can reference these properties in your Gradle build script via `project.repoUser` and `project.repoPassword`.  

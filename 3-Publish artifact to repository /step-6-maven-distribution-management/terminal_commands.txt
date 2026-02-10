@@ -1,0 +1,34 @@
+<!-- 📦 SUMMARY  
+This XML snippet configures the distribution management section in a Maven POM file to specify where snapshot artifacts should be deployed.  
+Language/Platform: XML (Maven POM configuration)  
+What you'll learn: How to define the remote repository URL and ID for deploying snapshot versions of your Maven project.  
+Outcome: Maven will upload snapshot builds to the specified Nexus repository URL during the deploy phase.  
+Why this matters: Separates deployment destinations for snapshot (development) builds, helping manage artifact versions effectively.  
+-->
+
+<!-- ------------------------------  
+🧩 SECTION TITLE: Configure Snapshot Repository for Deployment  
+------------------------------ -->
+<distributionManagement>
+  <snapshotRepository>
+    <id>nexus-snapshots</id>  
+    <!-- ✅ What it does: Defines an identifier for the snapshot repository; referenced in settings.xml for credentials -->
+    <url>http://<NEXUS_IP>:8081/repository/maven-snapshots/</url>  
+    <!-- ✅ What it does: URL of the Nexus repository where snapshot artifacts will be deployed -->
+  </snapshotRepository>
+</distributionManagement>
+
+<!-- 🧠 Why it matters:  
+- This setup tells Maven to deploy all snapshot versions (versions ending with -SNAPSHOT) to this specific repository.  
+- Snapshot repositories allow iterative builds during development without polluting release repositories.  
+- The `<id>` links to credentials stored in your Maven `settings.xml`.  
+-->
+
+
+
+# ------------------------------  
+✅ NOTES / GOTCHAS / TIPS  
+------------------------------  
+# - Replace `<NEXUS_IP>` in URL with your actual Nexus server IP or domain.  
+# - Never commit settings.xml with plaintext credentials to version control. Use environment variables or encrypted passwords if possible.  
+# - For release versions, configure a `<repository>` element alongside `<snapshotRepository>`.  

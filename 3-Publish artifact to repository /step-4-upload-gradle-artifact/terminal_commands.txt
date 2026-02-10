@@ -1,0 +1,38 @@
+# 📦 SUMMARY  
+# These commands build your Gradle project and then publish the built artifacts to the configured Maven repository (e.g., Nexus).  
+# Language/Platform: Bash/Linux shell commands for Gradle  
+# What you'll learn: How to compile your code and upload your build artifacts to a repository using Gradle commands  
+# Outcome: Your project is compiled, packaged, and the resulting artifacts are uploaded to Nexus or another Maven repo  
+# Why this matters: Automates the build and deployment process, enabling continuous integration and artifact management  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Build the project  
+# ------------------------------  
+gradle build  
+# ✅ What it does: Compiles source code, runs tests, and packages the application (e.g., into a JAR file)  
+# 🧠 Why it matters: Prepares the artifact that will be published to the repository in the next step  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Publish artifacts to Maven repository  
+# ------------------------------  
+gradle publish  
+# ✅ What it does: Uploads the built artifact(s) to the configured Maven repository using the publishing configuration in build.gradle  
+# 🧠 Why it matters: Pushes your build output to Nexus so it can be stored, shared, and used by other projects or deployment pipelines  
+
+# ------------------------------  
+# ▶️ HOW TO RUN / EXECUTE THESE COMMANDS  
+# ------------------------------  
+# Bash/Linux shell:  
+gradle build  
+gradle publish  
+
+# PowerShell (Windows):  
+# Use the same commands in PowerShell or any terminal where Gradle is installed and configured.  
+
+# ------------------------------  
+# ✅ NOTES / GOTCHAS / TIPS  
+# ------------------------------  
+# - Ensure your build.gradle is properly configured with publishing and repository details before running publish.  
+# - If you only want to publish snapshots or releases, configure your repository URL accordingly.  
+# - Use `./gradlew` instead of `gradle` if using the Gradle wrapper to ensure consistent Gradle versions.  
+# - Check build output and logs for errors during compilation or publishing steps.  

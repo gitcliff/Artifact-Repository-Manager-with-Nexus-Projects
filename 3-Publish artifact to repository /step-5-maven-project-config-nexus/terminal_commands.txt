@@ -1,0 +1,36 @@
+<!--
+📦 SUMMARY  
+This XML snippet configures the Maven Deploy Plugin in a Maven project's POM file.
+Language/Platform: XML (Maven POM configuration)
+What you'll learn: How to specify and manage the plugin responsible for deploying build artifacts to a remote repository.
+Outcome: Maven knows to use this plugin version to upload your artifacts (e.g., JARs) to a repository like Nexus.
+Why this matters: The deploy plugin automates the artifact upload process during the Maven build lifecycle, enabling continuous integration and artifact management.
+-->
+
+<!-- ------------------------------  
+🧩 SECTION TITLE: Maven Deploy Plugin Configuration  
+------------------------------ -->
+     <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.1</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+            </plugin>
+
+
+<!--  
+🧠 Why it matters:  
+- This plugin handles the deployment phase of Maven, which uploads the built artifacts to your Nexus repository or other configured remote repos.
+- Specifying the version ensures consistent behavior across builds and avoids unexpected issues with newer or older plugin versions.
+-->
+
+<!--  
+✅ NOTES / GOTCHAS / TIPS  
+- This snippet should be placed inside the `<plugins>` section of your `<build>` tag in your `pom.xml`.
+- You typically configure repository credentials and URLs separately in the `<distributionManagement>` section.
+- Maven automatically uses this plugin during the `mvn deploy` phase.
+-->

@@ -1,0 +1,39 @@
+# 📦 SUMMARY  
+# This Gradle build script snippet configures the project to publish a JAR artifact using the Maven Publish plugin.  
+# Language/Platform: Groovy (Gradle build script)  
+# What you'll learn: How to set up Maven publication in Gradle to publish build artifacts  
+# Outcome: After running the publish task, the JAR file is prepared for deployment to a Maven repository like Nexus  
+# Why this matters: Publishing artifacts to a repository allows sharing and reuse of your builds in CI/CD pipelines  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Apply Maven Publish plugin  
+# ------------------------------  
+apply plugin: 'maven-publish'  
+# ✅ What it does: Adds Gradle's Maven Publish plugin to enable publishing artifacts to Maven repositories  
+# 🧠 Why it matters: Without this plugin, Gradle cannot publish artifacts in the Maven repository format  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Configure publishing block  
+# ------------------------------  
+publishing {  
+  publications {  
+    maven(MavenPublication) {  
+      artifact("build/libs/my-app-$version.jar") {  
+        extension 'jar'  
+      }  
+    }  
+  }  
+}  
+# ✅ What it does:  
+# - Defines a Maven publication named "maven"  
+# - Specifies the artifact file to publish, referencing the built JAR with the current project version  
+# - Sets the artifact extension to "jar"  
+# 🧠 Why it matters: This tells Gradle exactly which file to publish and under what format, enabling Nexus or any Maven repo to accept the artifact properly  
+
+# ------------------------------  
+# ✅ NOTES / GOTCHAS / TIPS  
+# ------------------------------  
+# - Ensure the JAR file is built and exists at "build/libs/my-app-$version.jar" before publishing.  
+# - The variable `$version` should be defined in your Gradle project (usually in `version` property).  
+# - You will also need to configure a repository block to specify where to publish (e.g., Nexus URL and credentials).  
+# - Run `./gradlew publish` to execute the publishing task.  

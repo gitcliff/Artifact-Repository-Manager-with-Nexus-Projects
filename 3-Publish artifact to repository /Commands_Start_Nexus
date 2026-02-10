@@ -1,0 +1,40 @@
+# ------------------------------  
+# 🧩 SECTION TITLE: Connect to remote server via SSH  
+# ------------------------------  
+ssh root@<droplet-ip>                   # ✅ What it does: Securely connects to a remote Linux server as user “root” at <DROPLETIP>  
+                                     # 🧠 Why it matters: SSH provides encrypted access to manage remote systems safely  
+
+# ------------------------------  
+# ⚙️ SECTION TITLE: Switch to nexus service user  
+# ------------------------------  
+su - nexus                           # ✅ What it does: Switches from root to the dedicated “nexus” user account  
+                                     # 🧠 Why it matters: Running Nexus as its own user improves security and prevents permission issues  
+
+# ------------------------------  
+# 🧪 SECTION TITLE: Start Nexus Repository Manager  
+# ------------------------------  
+bash /opt/nexus-3.79.0-09/bin/nexus start   # ✅ What it does: Executes the Nexus startup script from its installation directory  
+                                           # 🧠 Why it matters: Starts Nexus so it can serve as a package repository manager  
+
+# ------------------------------  
+# ▶️ HOW TO RUN / EXECUTE THIS CODE  
+# ------------------------------  
+# ssh root@DROPLETIP                # ✅ Connects securely to the server as root  
+#                                   # 🧠 First step to gain access for service management  
+#                                   # 🔄 Equivalent PowerShell command: ssh root@DROPLETIP  
+
+# su - nexus                        # ✅ Switches to nexus user account  
+#                                   # 🧠 Required to run Nexus with correct permissions  
+#                                   # 🔄 Equivalent PowerShell command: Not directly supported; use `runas /user:nexus cmd`  
+
+# bash /opt/nexus-3.79.0-09/bin/nexus start  # ✅ Starts the Nexus Repository Manager  
+#                                           # 🧠 Boots up Nexus for handling repository operations  
+#                                           # 🔄 Equivalent PowerShell command: bash <path>\nexus start (WSL required)  
+
+# ------------------------------  
+# ✅ NOTES / GOTCHAS / TIPS  
+# ------------------------------  
+# - Replace DROPLETIP with your actual server IP or DNS name  
+# - Make sure Nexus has executable permissions: chmod +x /opt/nexus-3.79.0-09/bin/nexus  
+# - Logs can be checked at: /opt/sonatype-work/nexus3/log/nexus.log if startup fails  
+# - To stop Nexus later: /opt/nexus-3.79.0-09/bin/nexus stop  

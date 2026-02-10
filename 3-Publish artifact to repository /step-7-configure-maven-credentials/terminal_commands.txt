@@ -1,0 +1,64 @@
+<!--
+📦 SUMMARY  
+This XML snippet configures authentication credentials for Maven repositories in the `settings.xml` file.
+Language/Platform: XML (Maven settings.xml configuration)
+What you'll learn: How to securely store username and password for Maven repository access.
+Outcome: Maven uses these credentials to authenticate when deploying artifacts to the Nexus snapshot repository.
+Why this matters: Provides secure, centralized credential management without embedding passwords in POM files.
+-->
+
+<!-- ------------------------------  
+🧩 SECTION TITLE: Verify Maven Configuration Directory  
+------------------------------ -->
+$ ls -a ~ | grep .m2                                # ✅ What it does: Lists all hidden files/folders in home directory and filters for ".m2"  
+                                                    # 🧠 Why it matters: Checks if Maven config directory exists (where settings.xml lives)  
+
+$ ls .m2/                                           # ✅ What it does: Lists contents of .m2 directory to confirm repository/cache presence  
+                                                    # 🧠 Why it matters: Shows local repository and confirms Maven setup  
+
+# ------------------------------  
+🧩 SECTION TITLE: Configure Credentials in settings.xml  
+------------------------------ -->
+vim ~/.m2/settings.xml                              # ✅ What it does: Opens the settings.xml file in vim for editing  
+                                                    # 🧠 Why it matters: Stores Nexus credentials securely for Maven deployment  
+
+<!-- Example contents of settings.xml -->
+<settings>
+  <servers>
+    <server>
+      <id>nexus-snapshots</id>                      <!-- ✅ What it does: Matches the <id> in distributionManagement for credentials lookup -->
+      <username></username>                     <!-- ✅ What it does: Username for authenticating to Nexus snapshot repository -->
+      <password></password>                     <!-- ✅ What it does: Password for authenticating to Nexus snapshot repository -->
+    </server>
+  </servers>
+</settings>
+
+<!-- 🧠 Why it matters:  
+- Ensures Maven can authenticate to the Nexus repository during deploy phase.  
+- `<id>` must match the one specified in the POM’s distributionManagement.  
+-->
+
+# ------------------------------  
+▶️ HOW TO RUN / EXECUTE THESE COMMANDS  
+------------------------------  
+# Bash/Linux shell:  
+vim ~/.m2/settings.xml                               # ✅ Edit Maven config to add credentials securely  
+                                                    # 🧠 Allows Maven to authenticate when deploying snapshots  
+
+# PowerShell (Windows):  
+notepad $env:USERPROFILE\.m2\settings.xml           # ✅ Opens settings.xml in Notepad for editing on Windows  
+                                                    # 🧠 Equivalent step for Windows users configuring Maven  
+<!--  
+🧠 Why it matters:  
+- Maven uses this block to authenticate deployments when running `mvn deploy`.
+- Keeps sensitive credentials out of the POM, enhancing security.
+- The `<id>` must exactly match the one defined in your POM’s `<snapshotRepository>` or `<repository>` section.
+-->
+
+<!--  
+✅ NOTES / GOTCHAS / TIPS  
+- Replace `your_username` and `your_password` with your actual Nexus credentials.  
+- Never commit your `settings.xml` with passwords to version control.  
+- For better security, consider using encrypted passwords with Maven’s password encryption feature.  
+- The `settings.xml` file is usually located at `~/.m2/settings.xml` on Unix-based systems or `%USERPROFILE%\.m2\settings.xml` on Windows.  
+-->
