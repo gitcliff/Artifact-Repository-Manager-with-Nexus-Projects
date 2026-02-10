@@ -1,0 +1,34 @@
+# 📦 SUMMARY  
+# This command reads and displays the initial admin password for signing into Nexus from a secure file.  
+# Language/Platform: Bash/Linux shell command  
+# What you'll learn: How to securely retrieve a system-generated password stored in a file  
+# Outcome: You see the admin password required for first-time login to the Nexus web interface  
+# Why this matters: Nexus generates a default admin password stored in a file to ensure secure first-time access  
+
+ssh root@<Droplet-ip>                                  # ✅ What it does: Connects to the remote Nexus server as root over SSH  
+                                                    # 🧠 Why it matters: Needed to run commands on the server where Nexus is installed  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Retrieve Nexus initial admin password  
+# ------------------------------  
+cat /opt/sonatype-work/nexus3/admin.password         # ✅ What it does: Outputs the contents of the admin.password file to the terminal  
+                                                    # 🧠 Why it matters: Provides the one-time generated password needed to log into Nexus for the first time  
+
+# ------------------------------  
+# ▶️ HOW TO RUN / EXECUTE THIS COMMAND  
+# ------------------------------  
+# Bash/Linux shell:  
+cat /opt/sonatype-work/nexus3/admin.password         # ✅ Displays the admin password stored in the file  
+                                                    # 🧠 You need this password to access Nexus’s admin account on the web UI  
+
+# PowerShell (Windows with WSL):  
+# Run the same command in the WSL terminal.  
+# Native PowerShell does not support Linux paths; use a Windows equivalent if the file is accessible (e.g., type the path in Notepad or use `Get-Content` if on Windows paths).  
+
+# ------------------------------  
+# ✅ NOTES / GOTCHAS / TIPS  
+# ------------------------------  
+# - This password is generated on Nexus installation and stored securely; treat it as sensitive information.  
+# - After first login, change this password to secure your Nexus installation.  
+# - If "Permission denied", use: sudo cat /opt/sonatype-work/nexus3/admin.password  
+# - You can also copy it directly with: `sudo cat /opt/sonatype-work/nexus3/admin.password | pbcopy` (macOS) or `| clip` (Windows)  
