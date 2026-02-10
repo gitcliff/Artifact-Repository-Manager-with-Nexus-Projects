@@ -38,7 +38,3 @@ This lab strengthens expertise in **DevOps and software artifact management**, d
 Mastering these skills supports efficient, reliable CI/CD practices essential in modern DevOps and cloud roles, ensuring teams can collaborate on builds securely and consistently. 🚀🌐
 
 ---
-
-### 📂 Project Steps File
-
-The PDF project steps file is named: **5 - Publish Artifact to Repository.pdf**
