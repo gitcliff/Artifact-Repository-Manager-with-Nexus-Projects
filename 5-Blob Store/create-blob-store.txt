@@ -1,0 +1,13 @@
+# 📦 SUMMARY  
+# This command lists the contents of the 'blobs' directory inside the Nexus work folder, showing the available blob stores.  
+# Language/Platform: Bash/Linux shell command  
+# What you'll learn: How to check the blob stores Nexus uses to store artifact binaries  
+# Outcome: You see directories representing different blob stores configured in Nexus  
+# Why this matters: Understanding blob stores is key for managing Nexus storage and backups  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: List contents of blobs directory  
+# ------------------------------  
+ls blobs  
+# ✅ What it does: Displays all blob store directories inside the 'blobs' folder  
+# 🧠 Why it matters: Each blob store contains the binary data for different repositories or groups within Nexus  

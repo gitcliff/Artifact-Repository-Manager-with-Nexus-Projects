@@ -1,0 +1,35 @@
+# 📦 SUMMARY  
+# These commands navigate and list contents within Nexus's storage directories on the server filesystem.  
+# Language/Platform: Bash/Linux shell commands  
+# What you'll learn: How to explore Nexus artifact storage folders and understand where blobs (binary data) are stored  
+# Outcome: You view the directory structure and files where Nexus stores repository components  
+# Why this matters: Helps troubleshoot or inspect the underlying storage of your Nexus artifacts  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: List Nexus work directory contents  
+# ------------------------------  
+ls /opt/sonatype-work/nexus3/  
+# ✅ What it does: Lists files and folders in the main Nexus work directory where data and configs are stored  
+# 🧠 Why it matters: This directory contains important runtime data including blobs and configuration files  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: Change directory to Nexus work folder  
+# ------------------------------  
+cd /opt/sonatype-work/nexus3/  
+# ✅ What it does: Navigates into the Nexus data directory for further exploration  
+# 🧠 Why it matters: You need to be inside this directory to list subfolders and files  
+
+# ------------------------------  
+# 🧩 SECTION TITLE: List blobs directory contents  
+# ------------------------------  
+ls blobs/  
+# ✅ What it does: Lists subdirectories inside the blobs folder, which stores binary data for repository artifacts  
+# 🧠 Why it matters: Helps understand how Nexus organizes stored artifacts  
+
+ls blobs/default/  
+# ✅ What it does: Lists contents of the "default" blob store, which is typically the main storage for Nexus components  
+# 🧠 Why it matters: This folder holds actual binary data related to your artifacts  
+
+ls blobs/default/content/  
+# ✅ What it does: Lists the actual content files within the default blob store content directory  
+# 🧠 Why it matters: These files are the physical binaries of the artifacts stored in Nexus, useful for manual inspection or backup  
